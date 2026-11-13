@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Pengaturan karakter dan agar tampilan responsif di HP -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi Ketahanan Pangan - Kelas 12</title>
+    
+    <!-- CSS: Bagian untuk mempercantik tampilan website -->
+    <style>
+        /* Mengatur warna dasar dan font seluruh halaman */
+        body {
+            background-color: #f4f1de; /* Warna latar belakang krem lembut */
+            color: #2b2b2b;            /* Warna teks abu-abu gelap agar nyaman dibaca */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Kotak utama pembungkus konten (Card) */
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
+
+        /* Judul Utama */
+        h1 {
+            color: #2d6a4f; /* Hijau tua yang elegan */
+            font-size: 24px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        /* Penjelasan singkat */
+        .intro {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #495057;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Bagian Daftar Tips */
+        .tips-section {
+            background-color: #e9f5ed; /* Hijau sangat muda */
+            border-left: 5px solid #40916c;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tips-section h2 {
+            font-size: 18px;
+            color: #1b4332;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .tips-section ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #2d6a4f;
+            line-height: 1.5;
+        }
+
+        .tips-section li {
+            margin-bottom: 8px;
+        }
+
+        /* Kotak Interaktif "Tahukah Kamu?" */
+        .interactive-box {
+            background-color: #fefae0;
+            border: 2.px dashed #d4a373;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .interactive-box h3 {
+            color: #bc6c25;
+            margin-top: 0;
+            font-size: 16px;
+        }
+
+        #fact-display {
+            font-style: italic;
+            color: #333;
+            margin-bottom: 15px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Tombol Interaktif */
+        button {
+            background-color: #40916c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2d6a4f;
+        }
+
+        /* Footer kecil di bagian bawah */
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #8d99ae;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bagian Tampilan Utama (HTML) -->
+    <div class="container">
+        <h1>🌾 Ketahanan Pangan Generasi Muda</h1>
+        
+        <p class="intro">
+            Selamat datang di workshop kelas 12! Ketahanan pangan bukan cuma urusan pemerintah, tapi tanggung jawab kita bersama untuk memastikan ketersediaan, keterjangkauan, dan kualitas makanan bagi masa depan bangsa.
+        </p>
+
+        <!-- Daftar 3 Tips Menjaga Ketahanan Pangan -->
+        <div class="tips-section">
+            <h2>3 Tips Menjaga Ketahanan Pangan Sehari-hari:</h2>
+            <ul>
+                <li><strong>Bijak Mengonsumsi Makanan:</strong> Ambil makanan secukupnya dan habiskan untuk mengurangi limbah makanan (<i>food waste</i>).</li>
+                <li><strong>Dukung Produk Lokal:</strong> Beli hasil pertanian dari petani lokal untuk memperkuat ekonomi dan rantai pasok daerah.</li>
+                <li><strong>Diversifikasi Pangan:</strong> Jangan hanya bergantung pada beras; cobalah sumber karbohidrat lokal lain seperti singkong, ubi, atau jagung.</li>
+            </ul>
+        </div>
+
+        <!-- Bagian Interaktif Tombol -->
+        <div class="interactive-box">
+            <h3>💡 Tahukah Kamu?</h3>
+            <p id="fact-display">Klik tombol di bawah untuk melihat fakta menarik seputar pangan!</p>
+            <button onclick="tampilkanFaktaBaru()">Klik untuk Fakta Lainnya</button>
+        </div>
+
+        <footer>
+            Dibuat dengan semangat belajar coding untuk Workshop Siswa Kelas 12 🚀
+        </footer>
+    </div>
+
+    <!-- JavaScript: Bagian yang mengatur interaksi tombol -->
+    <script>
+        // Kumpulan data fakta unik (array)
+        const daftarFakta = [
+            "Sepertiga dari seluruh makanan yang diproduksi di dunia untuk konsumsi manusia terbuang sia-sia setiap tahunnya!",
+            "Singkong dan talas adalah tanaman lokal Indonesia yang sangat tahan terhadap perubahan iklim dan cuaca ekstrem.",
+            "Melakukan urban farming (menanam sayur di pekarangan rumah) dapat membantu memenuhi kebutuhan gizi keluarga secara mandiri.",
+            "Mengurangi konsumsi daging merah sekali saja dalam seminggu dapat menghemat penggunaan air bersih dalam jumlah besar.",
+            "Indonesia memiliki kekayaan pangan lokal non-beras terbanyak di dunia, mulai dari sagu hingga sukun!"
+        ];
+
+        let indeksAktif = 0; // Penanda fakta mana yang sedang tampil
+
+        // Fungsi yang akan dijalankan setiap kali tombol diklik
+        function tampilkanFaktaBaru() {
+            // Ambil elemen teks berdasarkan ID-nya
+            const elemenFakta = document.getElementById("fact-display");
+            
+            // Ubah teks di dalam elemen dengan fakta berikutnya di dalam array
+            elemenFakta.textContent = daftarFakta[indeksAktif];
+            
+            // Pindah ke indeks fakta berikutnya. Jika sudah di ujung, kembali ke awal (0)
+            indeksAktif = (indeksAktif + 1) % daftarFakta.length;
+        }
+    </script>
+
+</body>
+</html>
